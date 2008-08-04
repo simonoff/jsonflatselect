@@ -55,6 +55,11 @@ jQuery.fn.flatSelect = function(url,options) {
 		function(data) {
 				jQuery.each(data,function(a,b) {
 					flatSelect.find('select').append('<option value="'+ a +'">'+ b +'</option>');
+					// fix bug with another version of jquery
+					// all options set not selected
+					flatSelect.find('select option').each(function() {
+						this.selected = false;
+					});
 					flatSelect.find('.' + flat_name).append('<div id="'+ flat_name +'_div_' + a + '" class="' + options.nsclass + '">' + b +'</div>');
 					$('div#' + flat_name + '_div_' + a).bind(
 						'click',
